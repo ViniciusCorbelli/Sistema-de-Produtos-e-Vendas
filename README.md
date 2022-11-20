@@ -1,6 +1,6 @@
-# Reboot Laravel gestão 2021.2
+# Trabalho de banco de dados
 
-Projeto desenvolvido para o reboot da gestão 2021.2 da empresa [Code Jr](https://codejr.com.br/).
+Projeto desenvolvido a disciplina de banco de dados (DCC060)
 
 - Desenvolvimento:
   - Front-end: HTML, CSS e JavaScript
