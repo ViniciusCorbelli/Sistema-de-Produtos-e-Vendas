@@ -8,7 +8,7 @@
         <select  class="form-control" name="category_id" value="">
             <option></option>
             @foreach($categories as $cat)
-                <option {{ $category->category && $cat->category->id == $cat->id ? "selected" : "" }} value="{{ $cat->id }}">{{ $cat->name }}</option>
+                <option {{ $category->category && $category->category->id == $cat->id ? "selected" : "" }} value="{{ $cat->id }}">{{ $cat->name }}</option>
             @endforeach
         </select>
     </div>

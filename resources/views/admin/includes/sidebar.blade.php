@@ -1,9 +1,7 @@
 <aside class="main-sidebar elevation-4 sidebar-dark-primary"  style="overflow-x: hidden;">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="http://mais.codejunior.com.br/img/logo-fechada.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Banco de Dados - DCC 060</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -29,7 +27,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview ">
-            <a href="/" class="nav-link {{ Route::is('dashboard') ? 'active' : '' }}">
+            <a href="/home" class="nav-link {{ Route::is('dashboard') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -39,7 +37,7 @@
 
             <li class="nav-item has-treeview ">
               <a href="{{ route('users.index') }}" class="nav-link {{ Route::is('user*') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fa fa-user"></i>
                 <p>
                   Usuários
                 </p>
@@ -48,7 +46,7 @@
 
             <li class="nav-item has-treeview ">
               <a href="{{ route('categories.index') }}" class="nav-link {{ Route::is('categories*') ? 'active' : '' }}">
-                <i class="nav-icon fa fa-list-alt"></i>
+                <i class="nav-icon fa fa-sitemap"></i>
                 <p>
                   Categorias
                 </p>
@@ -57,7 +55,7 @@
 
             <li class="nav-item has-treeview ">
               <a href="{{ route('brands.index') }}" class="nav-link {{ Route::is('brands*') ? 'active' : '' }}">
-                <i class="nav-icon fa fa-list-alt"></i>
+                <i class="nav-icon fa fa-copyright"></i>
                 <p>
                   Marcas
                 </p>
@@ -65,8 +63,26 @@
             </li>
 
             <li class="nav-item has-treeview ">
-              <a href="{{ route('coupons.index') }}" class="nav-link {{ Route::is('coupons*') ? 'active' : '' }}">
+              <a href="{{ route('products.index') }}" class="nav-link {{ Route::is('products*') ? 'active' : '' }}">
                 <i class="nav-icon fa fa-list-alt"></i>
+                <p>
+                  Produtos
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item has-treeview ">
+              <a href="{{ route('payments.index') }}" class="nav-link {{ Route::is('payments*') ? 'active' : '' }}">
+                <i class="nav-icon fa fa-credit-card"></i>
+                <p>
+                  Pagamentos
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item has-treeview ">
+              <a href="{{ route('coupons.index') }}" class="nav-link {{ Route::is('coupons*') ? 'active' : '' }}">
+                <i class="nav-icon fa fa-times"></i>
                 <p>
                   Cupons
                 </p>
@@ -74,10 +90,10 @@
             </li>
 
             <li class="nav-item has-treeview ">
-              <a href="{{ route('payments.index') }}" class="nav-link {{ Route::is('payments*') ? 'active' : '' }}">
-                <i class="nav-icon fa fa-list-alt"></i>
+              <a href="{{ route('sales.index') }}" class="nav-link {{ Route::is('sales*') ? 'active' : '' }}">
+                <i class="nav-icon fa fa-shopping-cart"></i>
                 <p>
-                  Pagamentos
+                  Vendas
                 </p>
               </a>
             </li>

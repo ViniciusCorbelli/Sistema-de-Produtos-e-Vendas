@@ -18,7 +18,7 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/', function () {
+    Route::get('/home', function () {
         return view('admin.layouts.app');
     })->name('dashboard');
 
@@ -27,5 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/brands', 'BrandController');
     Route::resource('/coupons', 'CouponController');
     Route::resource('/payments', 'PaymentController');
+    Route::resource('/products', 'ProductController');
+    Route::resource('/sales', 'SellController');
     
 });

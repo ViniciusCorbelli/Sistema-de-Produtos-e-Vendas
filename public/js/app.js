@@ -14340,7 +14340,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1
 		}
 		else if ( page == 'current' ) {
 			// Current page implies that order=current and fitler=applied, since it is
-			// fairly senseless otherwise, regardless of what order and search actually
+			// fairly sensaless otherwise, regardless of what order and search actually
 			// are
 			for ( i=settings._iDisplayStart, ien=settings.fnDisplayEnd() ; i<ien ; i++ ) {
 				a.push( displayFiltered[i] );
@@ -73597,7 +73597,7 @@ function preventOverflow(data, options) {
 
   // If offsetParent is the reference element, we really want to
   // go one step up and use the next offsetParent as reference to
-  // avoid to make this modifier completely useless and look like broken
+  // avoid to make this modifier completely usaless and look like broken
   if (data.instance.reference === boundariesElement) {
     boundariesElement = getOffsetParent(boundariesElement);
   }
@@ -94613,7 +94613,7 @@ function toObject (arr) {
 
 /**
  * Perform no operation.
- * Stubbing args to make Flow happy without leaving useless transpiled code
+ * Stubbing args to make Flow happy without leaving usaless transpiled code
  * with ...rest (https://flow.org/blog/2017/05/07/Strict-Function-Call-Arity/).
  */
 function noop (a, b, c) {}
