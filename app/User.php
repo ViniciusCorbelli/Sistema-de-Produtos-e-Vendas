@@ -9,11 +9,11 @@ class User extends Authenticatable
     protected $guarded = [];
 
     public function clients() {
-        return $this->belongsToMany(Client::class);
+        return $this->hasOne(Client::class, 'clients');
     }
 
     public function provider() {
-        return $this->belongsToMany(Provider::class);
+        return $this->hasOne(Provider::class, 'providers');
     }
 
 }

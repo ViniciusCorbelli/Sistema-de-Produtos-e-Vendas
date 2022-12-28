@@ -6,6 +6,6 @@
 
     <div class="form-group col-sm-6">
         <label for="value" class="required">Valor </label>
-        <input type="number" value="value" id="value" class="form-control" required autofocus value="{{ old('value',$coupon->value) }}">
+        <input type="number" name="value" id="value" class="form-control" required autofocus value="{{ old('value',$coupon->value) }}">
     </div>
 </div>

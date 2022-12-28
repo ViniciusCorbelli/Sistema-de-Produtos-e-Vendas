@@ -48,7 +48,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $categoria = Product::create($request->except('provider_id'));
-        $providers = [];
+        /*$providers = [];
         if($request->provider_id != null){
             foreach ($request->provider_id as $provider) {
                 $providers[] = Provider::find($provider);
@@ -62,8 +62,7 @@ class ProductController extends Controller
                 $categoria->images()->create($image);
             }
         }
-
-        $categoria->save();
+        $categoria->save();*/
 
         return redirect()->route('products.index')->with('success', true);
     }

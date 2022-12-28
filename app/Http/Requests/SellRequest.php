@@ -24,7 +24,15 @@ class SellRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:3|max:100',
+            'totalSale' => 'required',
+            'crossdocking' => 'required',
+            'situation' => 'required',
+            'note' => 'required',
+            'client_id' => 'required',
+            'client_id' => 'required',
+            'client_id' => 'required',
+            'client_id' => 'required',
+            'client_id' => 'required',
         ];
     }
 }

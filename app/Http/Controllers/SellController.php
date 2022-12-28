@@ -47,6 +47,7 @@ class SellController extends Controller
      */
     public function store(SellRequest $request)
     {
+        dd($request->all());
         Sell::create($request->all());
         return redirect()->route('sales.index')->with('success', true);
     }

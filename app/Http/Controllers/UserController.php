@@ -45,16 +45,16 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
 
-        $data = $request->get('name', 'email', 'password');
+        $data = $request->only('name', 'email', 'password');
         $data['password'] = bcrypt($data['password']);
         
         $user = User::create($data);
 
-        if ($request->get('user_type') == 0) {
-            $user->client()->syncWithoutDetaching($request->get('CPF', 'telephone'));
+       /* if ($request->get('user_type') == 0) {
+            $user->client()->syncWithoutDetaching($request->only('CPF', 'telephone'));
         } else {
-            $user->provider()->syncWithoutDetaching($request->get('CNPJ'));
-        }
+            $user->provider()->syncWithoutDetaching($request->only('CNPJ'));
+        }*/
         $user->save();
 
         return redirect()->route('users.index')->with('sucess', true);

@@ -37,8 +37,8 @@
     </div>
 
     <div class="form-group col-sm-6">
-        <label for="client_id">Cupom</label>
-        <select  class="form-control" name="client_id" value="">
+        <label for="coupon_id">Cupom</label>
+        <select  class="form-control" name="coupon_id" value="">
             <option></option>
             @foreach($coupons as $coupon)
                 <option {{ $sell->coupon && $sell->coupon->id == $coupon->id ? "selected" : "" }} value="{{ $coupon->id }}">{{ $coupon->name }}</option>
@@ -47,8 +47,8 @@
     </div>
 
     <div class="form-group col-sm-6">
-        <label for="client_id">Pagamento</label>
-        <select  class="form-control" name="client_id" value="">
+        <label for="payment_id">Pagamento</label>
+        <select  class="form-control" name="payment_id" value="">
             <option></option>
             @foreach($payments as $payment)
                 <option {{ $sell->payment && $sell->payment->id == $payment->id ? "selected" : "" }} value="{{ $payment->id }}">{{ $payment->name }}</option>
