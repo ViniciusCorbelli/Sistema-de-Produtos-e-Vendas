@@ -7,7 +7,7 @@
             @include('admin.sales.form')
         @endslot
         @slot('back')
-            <a href="{{ route('sales.edit', $sell->id) }}" class="btn btn-primary float-right ml-1"><i class="fas fa-pen"></i> Editar</a>
+            <a href="{{ route('sales.edit', $sale->id) }}" class="btn btn-primary float-right ml-1"><i class="fas fa-pen"></i> Editar</a>
             <a href="{{ route('sales.index') }}" class="btn btn-dark float-right"><i class="fas fa-undo-alt"></i> Voltar</a>
         @endslot
     @endcomponent

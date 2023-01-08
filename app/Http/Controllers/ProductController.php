@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Brand;
 use App\Category;
 use App\Product;
-use App\Http\Requests\ProductRequest;
 use App\Provider;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -45,24 +45,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
-        $categoria = Product::create($request->except('provider_id'));
-        /*$providers = [];
-        if($request->provider_id != null){
-            foreach ($request->provider_id as $provider) {
-                $providers[] = Provider::find($provider);
-            }
-    
-            $categoria->providers()->saveMany($providers);
-        }
-
-        if($request->images != null){
-            foreach ($request->images as $image) {
-                $categoria->images()->create($image);
-            }
-        }
-        $categoria->save();*/
+        Product::create($request->except('provider_id'));
 
         return redirect()->route('products.index')->with('success', true);
     }
@@ -102,25 +87,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, Product $product)
+    public function update(Request $request, Product $product)
     {
         $product->update($request->except('provider_id'));
-
-        $providers = [];
-        if($request->produto_id != null){
-            foreach ($request->provider_id as $provider) {
-                $providers[] = Provider::find($provider);
-            }
-            $product->providers()->saveMany($providers);
-        } 
-        $product->providers()->whereNotIn('id', $request->provider_id ?? [0])->delete();
-
-        if($request->produto_id != null){
-            foreach ($request->images as $image) {
-                $product->images()->createOrUpdate($image);
-            }
-        } 
-        $product->images()->whereNotIn('url', $request->image ?? [0])->delete();
         
         return redirect()->route('products.index')->with('success', true);
     }

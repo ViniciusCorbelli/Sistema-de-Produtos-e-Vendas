@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Coupon;
-use App\Http\Requests\CouponRequest;
+use Illuminate\Http\Request;
 
 class CouponController extends Controller
 {
@@ -39,7 +39,7 @@ class CouponController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CouponRequest $request)
+    public function store(Request $request)
     {
         Coupon::create($request->all());
         return redirect()->route('coupons.index')->with('success', true);
@@ -74,7 +74,7 @@ class CouponController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CouponRequest $request, Coupon $coupon)
+    public function update(Request $request, Coupon $coupon)
     {
         $coupon->update($request->all());
         return redirect()->route('coupons.index')->with('success', true);

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Brand;
-use App\Http\Requests\BrandRequest;
+use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
@@ -39,7 +39,7 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BrandRequest $request)
+    public function store(Request $request)
     {
         Brand::create($request->all());
         return redirect()->route('brands.index')->with('success', true);
@@ -74,7 +74,7 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(BrandRequest $request, Brand $brand)
+    public function update(Request $request, Brand $brand)
     {
         $brand->update($request->all());
         return redirect()->route('brands.index')->with('success', true);

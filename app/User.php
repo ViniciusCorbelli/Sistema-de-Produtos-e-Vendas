@@ -8,12 +8,12 @@ class User extends Authenticatable
 {
     protected $guarded = [];
 
-    public function clients() {
-        return $this->hasOne(Client::class, 'clients');
+    public function client() {
+        return $this->belongsTo(Client::class, 'clients');
     }
 
     public function provider() {
-        return $this->hasOne(Provider::class, 'providers');
+        return $this->belongsTo(Provider::class, 'providers');
     }
 
 }

@@ -5,19 +5,23 @@
     @slot('create', route('sales.create'))
     @slot('title', 'Vendas')
     @slot('head')
-        <th>Nome</th>
+        <th>ID venda</th>
+        <th>Forma de pagamento</th>
+        <th>Total</th>
         <th></th>
     @endslot
     @slot('body')
-        @foreach ($sales as $sell)
+        @foreach ($sales as $sale)
                 <tr>
-                    <td>{{ $sell->name }}</td>
+                    <td>{{ $sale->id }}</td>
+                    <td>{{ $sale->payment->name }}</td>
+                    <td>{{ $sale->totalSale }}</td>
                     <td class="options">
-                        <a href="{{ route('sales.edit', $sell->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pen"></i></a>
+                        <a href="{{ route('sales.edit', $sale->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pen"></i></a>
 
-                        <a href="{{ route('sales.show', $sell->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                        <a href="{{ route('sales.show', $sale->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
 
-                        <form class="form-delete" action="{{ route('sales.destroy', $sell->id) }}" method="post">
+                        <form class="form-delete" action="{{ route('sales.destroy', $sale->id) }}" method="post">
                             @csrf
                             @method('delete')
 

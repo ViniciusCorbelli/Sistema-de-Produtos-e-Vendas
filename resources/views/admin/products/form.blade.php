@@ -59,20 +59,18 @@
 
     <div class="form-group col-sm-6">
         <label for="category_id">Categoria</label>
-        <select  class="form-control" name="category_id" value="">
-            <option></option>
+        <select  class="form-control" name="category_id" value="{{ old('category_id', $product->category_id) }}">
             @foreach($categories as $category)
-                <option {{ $product->category && $product->category->id == $category->id ? "selected" : "" }} value="{{ $category->id }}">{{ $category->name }}</option>
+                <option {{ old('category_id', $product->category_id) == $category->id ? "selected" : "" }} value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         </select>
     </div>
 
     <div class="form-group col-sm-6">
         <label for="brand_id">Marca</label>
-        <select  class="form-control" name="brand_id" value="">
-            <option></option>
+        <select  class="form-control" name="brand_id" value="{{ old('brand_id', $product->brand_id) }}">
             @foreach($brands as $brand)
-                <option {{ $product->category && $product->brand->id == $brand->id ? "selected" : "" }} value="{{ $brand->id }}">{{ $brand->name }}</option>
+                <option {{ old('brand_id', $product->brand_id) == $brand->id ? "selected" : "" }} value="{{ $brand->id }}">{{ $brand->name }}</option>
             @endforeach
         </select>
     </div>
@@ -80,7 +78,6 @@
     <div class="form-group col-sm-6">
         <label for="provider_id">Fornecedores</label>
         <select  class="form-control" name="provider_id[]" value="" multiple>
-            <option></option>
             @foreach($providers as $provider)
                 <option {{ $product->provider()->find($provider->id) != null ? "selected" : "" }} value="{{ $provider->id }}">{{ $provider->name }}</option>
             @endforeach

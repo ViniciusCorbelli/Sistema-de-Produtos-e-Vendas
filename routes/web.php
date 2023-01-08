@@ -14,20 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('/', 'HomeController');
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/home', function () {
-        return view('admin.layouts.app');
-    })->name('dashboard');
-
+    Route::resource('/home', 'DashboardController');
     Route::resource('/users', 'UserController');
     Route::resource('/categories', 'CategoryController');
     Route::resource('/brands', 'BrandController');
     Route::resource('/coupons', 'CouponController');
     Route::resource('/payments', 'PaymentController');
     Route::resource('/products', 'ProductController');
-    Route::resource('/sales', 'SellController');
+    Route::resource('/sales', 'SaleController');
     
 });

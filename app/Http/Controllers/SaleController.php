@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Coupon;
-use App\Sell;
-use App\Http\Requests\SellRequest;
 use App\Payment;
+use App\Product;
+use App\Sale;
 use App\User;
+use Illuminate\Http\Request;
 
-class SellController extends Controller
+class SaleController extends Controller
 {
 
     public function __construct()
@@ -21,7 +22,7 @@ class SellController extends Controller
      */
     public function index()
     {
-        $sales = Sell::all();
+        $sales = Sale::all();
         return view('admin.sales.index', compact('sales'));
     }
 
@@ -32,11 +33,12 @@ class SellController extends Controller
      */
     public function create()
     {
-        $sell = new Sell();
-        $clients = User::all();
+        $sale = new Sale();
+        $clients = User::join('clients', 'clients.user_id', '=', 'users.id')->get();
         $coupons = Coupon::all();
         $payments = Payment::all();
-        return view('admin.sales.create', compact('sell', 'clients', 'coupons', 'payments'));
+        $products = Product::all();
+        return view('admin.sales.create', compact('sale', 'clients', 'coupons', 'payments', 'products'));
     }
 
     /**
@@ -45,10 +47,9 @@ class SellController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SellRequest $request)
+    public function store(Request $request)
     {
-        dd($request->all());
-        Sell::create($request->all());
+        Sale::create($request->all());
         return redirect()->route('sales.index')->with('success', true);
     }
 
@@ -58,12 +59,13 @@ class SellController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Sell $sell)
+    public function show(Sale $sale)
     {
-        $clients = User::all();
+        $clients = User::join('clients', 'clients.user_id', '=', 'users.id')->get();
         $coupons = Coupon::all();
         $payments = Payment::all();
-        return view('admin.sales.show', compact('sell', 'clients', 'coupons', 'payments'));
+        $products = Product::all();
+        return view('admin.sales.show', compact('sale', 'clients', 'coupons', 'payments', 'products'));
     }
 
     /**
@@ -72,12 +74,13 @@ class SellController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sell $sell)
+    public function edit(Sale $sale)
     {
-        $clients = User::all();
+        $clients = User::join('clients', 'clients.user_id', '=', 'users.id')->get();
         $coupons = Coupon::all();
         $payments = Payment::all();
-        return view('admin.sales.edit', compact('sell', 'clients', 'coupons', 'payments'));
+        $products = Product::all();
+        return view('admin.sales.edit', compact('sale', 'clients', 'coupons', 'payments', 'products'));
     }
 
     /**
@@ -87,9 +90,9 @@ class SellController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SellRequest $request, Sell $sell)
+    public function update(Request $request, Sale $sale)
     {
-        $sell->update($request->all());
+        $sale->update($request->all());
         return redirect()->route('sales.index')->with('success', true);
     }
 
@@ -99,9 +102,9 @@ class SellController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sell $sell)
+    public function destroy(Sale $sale)
     {
-        $sell->delete();
+        $sale->delete();
         return redirect()->route('sales.index')->with('success', true);
     }
 }

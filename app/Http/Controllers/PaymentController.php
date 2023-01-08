@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Payment;
-use App\Http\Requests\PaymentRequest;
+use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
@@ -39,7 +39,7 @@ class PaymentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PaymentRequest $request)
+    public function store(Request $request)
     {
         Payment::create($request->all());
         return redirect()->route('payments.index')->with('success', true);
@@ -74,7 +74,7 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PaymentRequest $request, payment $payment)
+    public function update(Request $request, payment $payment)
     {
         $payment->update($request->all());
         return redirect()->route('payments.index')->with('success', true);

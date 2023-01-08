@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\userRequest;
+use App\Client;
+use App\Provider;
 use App\User;
-use App\Produtos;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -42,19 +42,22 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
-
         $data = $request->only('name', 'email', 'password');
         $data['password'] = bcrypt($data['password']);
         
         $user = User::create($data);
 
-       /* if ($request->get('user_type') == 0) {
-            $user->client()->syncWithoutDetaching($request->only('CPF', 'telephone'));
+        if ($request->get('user_type') == 1) {
+            $data = $request->only('CPF', 'telephone');
+            $data['user_id'] = $user->id;
+            $user->client()->create($data);
         } else {
-            $user->provider()->syncWithoutDetaching($request->only('CNPJ'));
-        }*/
+            $data = $request->only('CNPJ');
+            $data['user_id'] = $user->id;
+            $user->provider()->create($request->only('CNPJ'));
+        }
         $user->save();
 
         return redirect()->route('users.index')->with('sucess', true);
@@ -68,7 +71,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin.users.show', compact('user'));
+        $client = Client::where('user_id', $user->id)->first();
+        $provider = Provider::where('user_id', $user->id)->first();
+        return view('admin.users.show', compact('user', 'client', 'provider'));
     }
 
     /**
@@ -79,7 +84,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        $client = Client::where('user_id', $user->id)->first();
+        $provider = Provider::where('user_id', $user->id)->first();
+        return view('admin.users.edit', compact('user', 'client', 'provider'));
     }
 
     /**
@@ -89,13 +96,29 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
-        $data = $request->except('produtos_id');
+        $data = $request->only('name', 'email', 'password');
         $data['password'] = bcrypt($data['password']);
 
         $user->update($data);
-        $user->produtos()->syncWithoutDetaching($request->produtos_id);
+
+        foreach(Client::where('user_id', $user->id)->get() as $user) {
+            $user->delete();
+        }
+        foreach(Provider::where('user_id', $user->id)->get() as $user) {
+            $user->delete();
+        }
+        
+        if ($request->get('user_type') == 1 || $request->get('user_type') == 'Cliente') {
+            $data = $request->only('CPF', 'telephone');
+            $data['user_id'] = $user->id;
+            $user->client()->create($data);
+        } else {
+            $data = $request->only('CNPJ');
+            $data['user_id'] = $user->id;
+            $user->provider()->create($request->only('CNPJ'));
+        }
         $user->save();
 
         return redirect()->route('users.index')->with('sucess', true);

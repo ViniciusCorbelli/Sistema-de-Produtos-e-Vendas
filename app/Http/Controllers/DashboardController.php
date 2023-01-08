@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
+use App\Sale;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(20);
-        return view('home', compact('products'));
+        $qtdSale = Sale::count();
+        return view('dashboard', compact('qtdSale'));
     }
 }

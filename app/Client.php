@@ -9,7 +9,10 @@ class Client extends Authenticatable
 {
     use Notifiable;
 
+    protected $guarded = [];
+
     public function user() {
         return $this->belongsTo(User::class);
     }
+    
 }
